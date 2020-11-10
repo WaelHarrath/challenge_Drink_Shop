@@ -8,7 +8,11 @@ function SearchForm({ setSearched }) {
         <FormControl
           type="text"
           placeholder="Search"
-          onChange={(e) => setSearched(e.target.value)}
+          onChange={(e) => {
+            e.target.value === ""
+              ? setSearched("margarita")
+              : setSearched(e.target.value);
+          }}
           className=" mr-sm-2"
         />
         <Button type="submit" disabled>

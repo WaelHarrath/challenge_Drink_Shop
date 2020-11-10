@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function SingleDrink({ match, cocktails, setShow, setSearched }) {
+function SingleDrink({ match, cocktails}) {
   const singleCocktail = cocktails.find((el) => match.params.id === el.idDrink);
   console.log(singleCocktail);
   return (
@@ -32,10 +32,6 @@ function SingleDrink({ match, cocktails, setShow, setSearched }) {
           <Link to="/">
             <Button
               variant="primary"
-              onClick={() => {
-                setShow(true);
-                setSearched("");
-              }}
             >
               Go Back
             </Button>

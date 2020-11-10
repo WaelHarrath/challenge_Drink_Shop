@@ -8,31 +8,22 @@ import Errors from "./Pages/Errors";
 import About from "./Pages/About";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import SearchForm from "./Commponents/SearchForm";
 function App() {
   const [cocktails, setCocktails] = useState([]);
   const [cocktailsLoad, setCocktailsLoad] = useState(true);
-  const [searched, setSearched] = useState("");
-  const [show, setShow] = useState(true);
-  const getCocktail = () => {
-    Axios.get(
-      "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
-    )
-      .then((res) => {
-        setCocktails(res.data.drinks);
-        setCocktailsLoad(false);
-      })
-      .catch((err) => console.log(err));
-  };
+  const [searched, setSearched] = useState("margarita");
+  const searching=()=>{
+Axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searched}`).then((res)=>{
+  setCocktails(res.data.drinks);
+  setCocktailsLoad(false);
+}).catch((err)=>console.log(err));
+  }
   useEffect(() => {
-    getCocktail();
-  }, []);
-  console.log(cocktails);
-  console.log(cocktailsLoad);
+    searching();
+  }, [searched,]);
   return (
     <div className="App">
-      <Navig setShow={setShow} />
-      {show ? <SearchForm setSearched={setSearched} /> : ""}
+      <Navig  />
       <Switch>
         <Route
           exact
@@ -42,7 +33,7 @@ function App() {
               cocktails={cocktails}
               cocktailsLoad={cocktailsLoad}
               searched={searched}
-              setShow={setShow}
+              setSearched={setSearched}
             />
           )}
         />
@@ -52,13 +43,11 @@ function App() {
             <SingleDrink
               {...props}
               cocktails={cocktails}
-              setSearched={setSearched}
-              setShow={setShow}
             />
           )}
         />
         <Route path="/About" component={About} />
-        <Route path="*" render={() => <Errors setShow={setShow} />} />
+        <Route path="*" render={() => <Errors />} />
       </Switch>
     </div>
   );

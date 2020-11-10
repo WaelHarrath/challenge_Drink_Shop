@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function Drink({ cocktail, setShow }) {
+function Drink({ cocktail }) {
   return (
     <Card style={{ width: "18rem", margin: "2%" }}>
       <Card.Img variant="top" src={cocktail.strDrinkThumb} />
@@ -10,7 +10,7 @@ function Drink({ cocktail, setShow }) {
         <Card.Title>{cocktail.strDrink}</Card.Title>
         <Card.Text></Card.Text>
         <Link to={`/List_of_Drinks/${cocktail.idDrink}`}>
-          <Button variant="primary" onClick={() => setShow(false)}>
+          <Button variant="primary">
             See Details...
           </Button>
         </Link>

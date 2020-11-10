@@ -2,7 +2,7 @@ import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function Navig({ setShow }) {
+function Navig() {
   return (
     <Navbar bg="primary" variant="dark">
       <img
@@ -13,14 +13,14 @@ function Navig({ setShow }) {
         alt="drinklogo"
       />
       <Link to="/">
-        <Navbar.Brand onClick={() => setShow(true)}>DrinkShop</Navbar.Brand>
+        <Navbar.Brand >DrinkShop</Navbar.Brand>
       </Link>
       <Nav className="mr-auto">
         <Link to="/">
-          <Navbar.Brand onClick={() => setShow(true)}>Home</Navbar.Brand>
+          <Navbar.Brand >Home</Navbar.Brand>
         </Link>
         <Link to="/About">
-          <Navbar.Brand onClick={() => setShow(false)}>About</Navbar.Brand>
+          <Navbar.Brand >About</Navbar.Brand>
         </Link>
       </Nav>
     </Navbar>

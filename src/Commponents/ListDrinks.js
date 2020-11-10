@@ -1,23 +1,17 @@
 import React from "react";
 import Drink from "./Drink";
 import Spinner from "react-bootstrap/Spinner";
-function ListDrinks({ cocktails, cocktailsLoad, searched, setShow }) {
+function ListDrinks({ cocktails, cocktailsLoad }) {
   return (
     <div className="cocktail-container">
       {cocktailsLoad ? (
         <Spinner animation="border" variant="primary" />
-      ) : cocktails.length === 0 ? (
+      ) :  (cocktails  ===  null || cocktails.length===0 ) ? (
+         (
         <h2>Nothing to show !!</h2>
-      ) : cocktails.filter((el) =>
-          el.strDrink.toLowerCase().includes(searched.toLowerCase())
-        ).length === 0 ? (
-        <h2>Nothing to show !!</h2>
-      ) : (
-        cocktails
-          .filter((el) =>
-            el.strDrink.toLowerCase().includes(searched.toLowerCase())
-          )
-          .map((el, i) => <Drink key={i} cocktail={el} setShow={setShow} />)
+      )
+      ) :  (
+        cocktails.map((el, i) => <Drink key={i} cocktail={el} />)
       )}
     </div>
   );
